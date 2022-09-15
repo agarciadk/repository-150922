@@ -10,6 +10,15 @@ public class Elfo {
     private String nombre;
     private Integer edad;
 
+    public Elfo() {
+    }
+
+    public Elfo(Long id, String nombre, Integer edad) {
+        this.id = id;
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+
     public Long getId() {
         return id;
     }

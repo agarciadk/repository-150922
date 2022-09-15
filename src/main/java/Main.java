@@ -17,16 +17,35 @@ public class Main {
         final ElfoService elfoService = context.getBean(ElfoService.class);
         System.out.println(elfoService);
 
-        long count = elfoService.count();
-        System.out.println("Número de elfos: " + count);
-
-        Elfo elfo;
+        System.out.println("Número de elfos: " + elfoService.count());
         try {
-            elfo = elfoService.find("Galadriel");
-            System.out.println(elfo);
+            System.out.println("------------- FINDALL -------------");
+            elfoService.findAll().forEach(System.out::println);
 
-            elfo = elfoService.find("asd"); // <-- Will throw an exception
-            System.out.println(elfo);
+            System.out.println("------------- FIND -------------");
+            System.out.println(elfoService.find("Galadriel"));
+
+            System.out.println("------------- ADD -------------");
+            System.out.println(elfoService.add(new Elfo(4L, "asd", 1234)));
+
+            // Update
+            System.out.println("------------- UPDATE -------------");
+            System.out.println(elfoService.updateById(4L, new Elfo(null, "das", 3456)));
+
+            // Delete
+            System.out.println("------------- DELETE -------------");
+            elfoService.deleteById(4L);
+            for (Elfo elfoItem : elfoService.findAll()) {
+                System.out.println(elfoItem);
+            }
+            System.out.println("------------- QUERY -------------");
+            elfoService.query().forEach(System.out::println);
+
+            System.out.println("------------- QUERY2 -------------");
+            System.out.println(elfoService.query2("Légolas"));
+
+            System.out.println("------------- QUERY3 -------------");
+            System.out.println(elfoService.query3("Elrond"));
 
         } catch (Exception e) {
             System.err.println("Ups, algo ha pasado");
