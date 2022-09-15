@@ -29,9 +29,9 @@ public class ElfoServiceImpl implements ElfoService {
     @Override
     public Elfo find(String nombre) throws Exception {
         if (nombre == null) throw new IllegalArgumentException("El nombre no puede ser nulo");
-        Elfo elfo = elfoRepository.findByNombre(nombre);
-        if (elfo == null) throw new Exception("El elfo no existe");
-        return elfo;
+        Optional<Elfo> elfo = elfoRepository.findByNombre(nombre);
+        if (!elfo.isPresent()) throw new Exception("El elfo no existe");
+        return elfo.get();
     }
 
     @Override

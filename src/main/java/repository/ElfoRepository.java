@@ -7,10 +7,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ElfoRepository extends CrudRepository<Elfo, Long> {
-    Elfo findByNombre(String nombre);
+    Optional<Elfo> findByNombre(String nombre);
 
     @Query("SELECT e FROM Elfo e")
     List<Elfo> query();
