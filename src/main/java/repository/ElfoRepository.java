@@ -1,5 +1,6 @@
 package repository;
 
+import model.Elfo;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

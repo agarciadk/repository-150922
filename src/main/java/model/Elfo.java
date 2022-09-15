@@ -1,7 +1,6 @@
-package repository;
+package model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
@@ -33,5 +32,14 @@ public class Elfo {
 
     public void setEdad(Integer edad) {
         this.edad = edad;
+    }
+
+    @Override
+    public String toString() {
+        return "Elfo{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", edad=" + edad +
+                '}';
     }
 }

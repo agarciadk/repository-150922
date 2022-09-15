@@ -1,8 +1,8 @@
-package repository;
-
 import org.h2.tools.Server;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
+import model.Elfo;
+import service.ElfoService;
 
 import java.sql.SQLException;
 
@@ -20,12 +20,25 @@ public class Main {
         long count = elfoService.count();
         System.out.println("Número de elfos: " + count);
 
-        System.out.println("Cerrando contexto.");
-        context.close();
+        Elfo elfo;
+        try {
+            elfo = elfoService.find("Galadriel");
+            System.out.println(elfo);
 
-        System.out.println("Cerrando BD.");
-        server.stop();
+            elfo = elfoService.find("asd"); // <-- Saltará excepción
+            System.out.println(elfo);
 
-        System.out.println("Cerrando app.");
+        } catch (Exception e) {
+            System.err.println("Ups, algo ha pasado");
+            e.printStackTrace();
+        } finally {
+            System.out.println("Cerrando contexto.");
+            context.close();
+
+            System.out.println("Cerrando BD.");
+            server.stop();
+
+            System.out.println("Cerrando app.");
+        }
     }
 }
