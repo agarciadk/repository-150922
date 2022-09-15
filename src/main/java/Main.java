@@ -25,7 +25,7 @@ public class Main {
             elfo = elfoService.find("Galadriel");
             System.out.println(elfo);
 
-            elfo = elfoService.find("asd"); // <-- Saltará excepción
+            elfo = elfoService.find("asd"); // <-- Will throw an exception
             System.out.println(elfo);
 
         } catch (Exception e) {
